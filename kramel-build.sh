@@ -80,7 +80,7 @@ COMPILER=gcc
 INCREMENTAL=1
 
 # Push ZIP to Telegram. 1 is YES | 0 is NO(default)
-PTTG=1
+PTTG=0
 	if [ $PTTG = 1 ]
 	then
 		# Set Telegram Chat ID
@@ -168,9 +168,9 @@ DATE=$(TZ=GMT-8 date +"%Y%m%d-%H%M")
 	echo " "
 	if [ $COMPILER = "gcc" ]
 	then
-		msg "|| Cloning GCC 12.0.0 baremetal ||"
-	        wget -O 64.zip https://github.com/mvaisakh/gcc-arm64/archive/1a4410a4cf49c78ab83197fdad1d2621760bdc73.zip;unzip 64.zip;mv gcc-arm64-1a4410a4cf49c78ab83197fdad1d2621760bdc73 gcc64
-		wget -O 32.zip https://github.com/mvaisakh/gcc-arm/archive/c8b46a6ab60d998b5efa1d5fb6aa34af35a95bad.zip;unzip 32.zip;mv gcc-arm-c8b46a6ab60d998b5efa1d5fb6aa34af35a95bad gcc32
+		msg "|| Cloning GCC baremetal ||"
+	        git clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git gcc64
+		git clone --depth=1 https://github.com/mvaisakh/gcc-arm.git gcc32
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
 	fi
